@@ -1,9 +1,7 @@
 class MessageController < ApplicationController
 	def create
 
-		@message = Message.new
-		@message.username = params[:username]
-		@message.message =  params[:message]
+		@message = Message.new(message_params)
 		
 		if !@message.save
 		    flash[:error] = "Could not create your message."
@@ -11,4 +9,9 @@ class MessageController < ApplicationController
 		
 		redirect_to :controller=>"index_page", :action=>"index"
 	end
+
+  private
+  def message_params
+    params.require(:username, :message)
+  end
 end
