@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  post 'message'=>'message#create'
+  resources :message
 
   root 'index_page#index'
   # The priority is based upon order of creation: first created -> highest priority.

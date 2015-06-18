@@ -1,9 +1,28 @@
 class MessageController < ApplicationController
-	def create
+	def new
+		@message = Message.new
+	end
 
+	def edit
+		@message = Message.find(params[:id])
+	end
+
+	def update
+		@message = Message.find(params[:id])
+
+		if @message.update(message_params)
+			redirect_to @message
+		else
+			render 'edit'
+		end
+	end
+
+	def create
 		@message = Message.new(message_params)
 		
-		if !@message.save
+		if @message.save
+			flash[:info] = "Message added successfully."
+		else
 		    flash[:error] = "Could not create your message."
 		end
 		
@@ -12,6 +31,9 @@ class MessageController < ApplicationController
 
   private
   def message_params
-    params.require(:username, :message)
+  	{
+  		:username => params[:username],
+  		:message => params[:message]
+  	}
   end
 end
