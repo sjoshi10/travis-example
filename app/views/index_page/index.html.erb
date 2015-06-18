@@ -1,2 +1,26 @@
-<h1>Hello World!</h1>
-<p>Enter a message</p>
+<h1>The Amazing Wall!</h1>
+<h2>Read the messages left by others!</h2>
+ 
+ <div class='messages'>
+	<table>
+	  <tr>
+	    <th>Username</th>
+	    <th>Message</th>
+	  </tr>
+	 
+	<% @messages.each do |message| %>
+	  <tr>
+	    <td><%= message.username %></td>
+	    <td><%= message.message %></td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+
+<div class='submit_form'>
+<%= form_tag("/message", method: "post") do %>
+	Username: <input type='text' name='username'></input><br/>
+	Message: <input type='text' name='message'></input><br/>
+	<input type='submit'></input>
+<% end %>
+</div>
