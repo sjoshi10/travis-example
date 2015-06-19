@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
+
 
 gem 'bootstrap-sass', '~> 3.2.0'
 
